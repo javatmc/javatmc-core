@@ -1,0 +1,9 @@
+description = 'JUnit based test framework for automated measurements'
+
+dependencies {
+    implementation project(':core')
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.14.0'
+    compileOnly 'org.projectlombok:lombok:1.18.10'
+}

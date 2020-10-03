@@ -1,0 +1,13 @@
+rootProject.name = "JavaTMC"
+
+include(':apps')
+include(':cli')
+include(':core')
+include(':driver-siglent')
+include(':signals')
+include(':spring-adapter')
+include(':test-framework')
+
+rootProject.children.each{project -> 
+	project.projectDir = file("measure-${project.name}")
+}

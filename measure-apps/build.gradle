@@ -1,0 +1,5 @@
+description = 'Common automations for measurements'
+
+dependencies {
+	implementation project(':core')
+}

@@ -1,0 +1,25 @@
+description = 'Core library'
+
+dependencies {
+	//Used by the VXI-11 Socket implementation
+    implementation 'org.acplt.remotetea:remotetea-oncrpc:1.1.4'
+	
+	//Used by the Serial Socket implementation
+    implementation 'com.fazecast:jSerialComm:[2.0.0,3.0.0)'
+
+	//Used by the LXI Discovery mDNS utility
+    implementation 'org.jmdns:jmdns:3.5.5'
+
+	//Used by the USB Socket implementation
+	implementation 'org.usb4java:usb4java:1.3.0'
+
+	implementation 'org.apache.commons:commons-lang3:3.11'
+    implementation 'org.slf4j:slf4j-api:1.7.30'
+
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.14.0'
+}
+
+test {
+	exclude 'org/jtmc/core/hardware/**'
+}

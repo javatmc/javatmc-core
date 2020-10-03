@@ -1,0 +1,7 @@
+description = 'Signals'
+
+dependencies {
+    implementation project(':core')
+
+    testImplementation 'org.assertj:assertj-core:3.14.0'
+}

@@ -1,0 +1,12 @@
+description = 'JavaTMC Siglent Drivers'
+
+dependencies {
+	implementation project(':core')
+
+	testImplementation 'junit:junit:4.12'
+	testImplementation 'org.assertj:assertj-core:3.14.0'
+}
+
+test {
+	exclude 'org/jtmc/siglent/hardware/**'
+}

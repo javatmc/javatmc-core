@@ -1,0 +1,9 @@
+description = 'JMeasure Spring Adapter'
+
+dependencies {
+    implementation project(':core')
+    implementation project(':driver-siglent')
+    implementation 'org.springframework:spring-core:5.2.0.RELEASE'
+    implementation 'org.springframework.boot:spring-boot-autoconfigure:2.2.0.RELEASE'
+    implementation 'org.projectlombok:lombok:1.18.10'
+}
