@@ -4,7 +4,7 @@
 
 allprojects {
 	group = 'org.jtmc'
-	version = '0.1.0-alpha'
+	version = '0.1.0-SNAPSHOT'
 }
 
 subprojects {
@@ -19,6 +19,16 @@ subprojects {
 	sourceCompatibility = '1.8'
 
 	publishing {
+		repositories {
+			maven {
+				name = "GitHubPackages"
+				url = uri("https://maven.pkg.github.com/" + System.getenv("GITHUB_REPOSITORY"))
+				credentials {
+					username = project.findProperty("gpr.user") ?: System.getenv("GITHUB_PKG_USERNAME")
+					password = project.findProperty("gpr.key") ?: System.getenv("GITHUB_PKG_TOKEN")
+				}
+			}
+    	}
 		publications {
 			maven(MavenPublication) {
 				from(components.java)

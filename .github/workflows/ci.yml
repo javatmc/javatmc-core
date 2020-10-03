@@ -1,4 +1,4 @@
-name: build
+name: ci
 on:
   create: {}
   push:
@@ -7,6 +7,7 @@ on:
       - '**/*.md'
     branches:
       - master
+      - release/**
   pull_request:
     paths-ignore:
       - '*.md'
@@ -28,3 +29,10 @@ jobs:
 
       - name: Build
         run: ./gradlew build --info
+
+      - name: Release
+        env:
+          GITHUB_PKG_USERNAME: javatmc
+          GITHUB_PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./gradlew publish
+    
