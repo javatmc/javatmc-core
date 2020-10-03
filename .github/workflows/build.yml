@@ -1,13 +1,20 @@
 name: build
-on: 
+on:
+  create: {}
   push:
     paths-ignore:
       - '*.md'
       - '**/*.md'
+    branches:
+      - master
   pull_request:
     paths-ignore:
       - '*.md'
       - '**/*.md'
+    types:
+      - opened
+      - edited
+      - synchronize
 
 jobs:
   build:
