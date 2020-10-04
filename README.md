@@ -1,7 +1,8 @@
 # Java Test & Measurement Control
 
 [![License](http://img.shields.io/:license-mit-blue.svg?style=flat-square)](http://badges.mit-license.org)
-[![Build Status](https://github.com/javatmc/javatmc-core/workflows/build/badge.svg)](https://github.com/javatmc/javatmc-core/actions)
+[![Build Status](https://github.com/javatmc/javatmc-core/workflows/ci/badge.svg?branch=master)](https://github.com/javatmc/javatmc-core/actions)
+[![codecov.io](https://codecov.io/github/javatmc/javatmc-core/coverage.svg?branch=master)](https://codecov.io/github/javatmc/javatmc-core?branch=master)
 
 > JavaTMC is a Java API for Test & Measurement devices, intended to be used for test automation. It's purpose is to extend continuous integration workflows with hardware tests.
 
