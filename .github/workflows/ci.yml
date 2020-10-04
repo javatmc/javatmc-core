@@ -27,12 +27,26 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Build
-        run: ./gradlew build --info
+      - name: Compile
+        run: ./gradlew compileJava --info
+
+      - name: Test
+        run: ./gradlew test --info
+
+      - name: Test coverage
+        run: ./gradlew jacocoTestReport --info
+
+      - uses: codecov/codecov-action@v1
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          directory: ./
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
 
       - name: Release
+        if: github.event_name != 'pull_request' && startsWith(github.ref, 'refs/tags/v')
         env:
           GITHUB_PKG_USERNAME: javatmc
           GITHUB_PKG_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./gradlew publish
-    
