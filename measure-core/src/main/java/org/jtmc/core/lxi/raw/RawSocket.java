@@ -75,32 +75,42 @@ public class RawSocket implements ISocket {
 
 	@Override
 	public ByteBuffer receive(final int count, final long timeout) throws IOException, SocketTimeoutException {
-		//TODO: restore previous timeout
-		socket.setSoTimeout((int)timeout);
-		ByteBuffer output = ByteBuffer.allocate(count);
-		while(count > 0) {
-			output.put((byte) socket.getInputStream().read());
+		int previousTimeout = socket.getSoTimeout();
+		try {
+			socket.setSoTimeout((int)timeout);
+
+			ByteBuffer buffer = ByteBuffer.allocate(count);
+			int read = 0;
+			while(read < count) {
+				buffer.put((byte)socket.getInputStream().read());
+				read++;
+			}
+			return buffer;
+		} finally {
+			socket.setSoTimeout((int)previousTimeout);
 		}
-		return output;
 	}
 
 	@Override
 	public ByteBuffer receive(final char delimiter, final long timeout) throws IOException, SocketTimeoutException {
 		int previousTimeout = socket.getSoTimeout();
-		socket.setSoTimeout((int)timeout);
-		
-		ArrayList<Byte> input = new ArrayList<>();
-		byte in = (byte) socket.getInputStream().read();
-		while(in != delimiter) {
-			input.add(in);
-			in = (byte) socket.getInputStream().read();
+		try {
+			socket.setSoTimeout((int)timeout);
+			
+			ArrayList<Byte> input = new ArrayList<>();
+			byte in = (byte) socket.getInputStream().read();
+			while(in != delimiter) {
+				input.add(in);
+				in = (byte) socket.getInputStream().read();
+			}
+			ByteBuffer bytes = ByteBuffer.allocate(input.size());
+			for(byte b : input) {
+				bytes.put(b);
+			}
+			return bytes;
+		} finally {
+			socket.setSoTimeout((int)previousTimeout);
 		}
-		socket.setSoTimeout((int)previousTimeout);
-		ByteBuffer bytes = ByteBuffer.allocate(input.size());
-		for(byte b : input) {
-			bytes.put(b);
-		}
-		return bytes;
 	}
 
 	@Override
