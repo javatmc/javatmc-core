@@ -51,6 +51,8 @@ subprojects {
 		toolVersion '8.39'
 		sourceSets = []
 		configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    ignoreFailures = false
+    maxWarnings = 0
 	}
 
 	tasks.withType(JavaCompile) {
