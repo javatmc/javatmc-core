@@ -1,9 +1,9 @@
 package org.jtmc.app;
 
 /**
- * IVPlotter
+ * IVPlotter is an application used to plot the current under the given voltage
+ * range.
  */
 public class IVPlotter {
 
-	
 }

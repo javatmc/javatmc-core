@@ -1,20 +1,21 @@
 package org.jtmc.app;
 
 /**
- * BodePlotter
+ * BodePlotter is an application used to plot the amplitude and phase difference
+ * when a device under test is given a stimuli in a range of frequencies.
  */
 public class BodePlotter {
 
-	float amplitude;
+  float amplitude;
 
-	float offset;
+  float offset;
 
-	float load;
+  float load;
 
-	float startFrequency;
+  float startFrequency;
 
-	float stopFrequency;
+  float stopFrequency;
 
-	int points;
+  int points;
 
 }

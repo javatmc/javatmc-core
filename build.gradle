@@ -11,6 +11,7 @@ subprojects {
 	apply plugin: 'java'
 	apply plugin: 'maven-publish'
 	apply plugin: 'jacoco'
+	apply plugin: 'checkstyle'
 
 	repositories {
 		jcenter()
@@ -44,6 +45,14 @@ subprojects {
 			csv.enabled false
 			html.destination file("${buildDir}/jacocoHtml")
 		}
+	}
+
+	checkstyle {
+		toolVersion '8.39'
+		sourceSets = []
+		configFile = file("${rootDir}/config/checkstyle/checkstyle.xml")
+    ignoreFailures = false
+    maxWarnings = 0
 	}
 
 	tasks.withType(JavaCompile) {

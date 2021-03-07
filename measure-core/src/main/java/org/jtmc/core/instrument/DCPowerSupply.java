@@ -3,37 +3,85 @@ package org.jtmc.core.instrument;
 import java.util.Collection;
 
 /**
- * A DC power supply is a device capable of outputting a set voltage or a set current
+ * A DC power supply is a device capable of outputting a set voltage 
+ * or a set current.
  * 
  * @author Balazs Eszes
  */
 public interface DCPowerSupply {
 
-	Collection<PowerOutput> getPowerOutputs();
+  Collection<PowerOutput> getPowerOutputs();
 
-	default PowerOutput getPowerOutput(int index) {
-		return this.getPowerOutputs().stream().skip(index).findFirst().get();
-	}
+  /**
+   * Returns the power output at the given index.
+   * 
+   * @param index Output index (zero indexed)
+   * @return Power output
+   */
+  default PowerOutput getPowerOutput(int index) {
+    return this.getPowerOutputs().stream().skip(index).findFirst().get();
+  }
 
-	default PowerOutput getPowerOutput(String name) {
-		return this.getPowerOutputs().stream().filter(channel -> channel.getName().equals(name)).findFirst().get();
-	}
+  /**
+   * Returns the power output with the given name.
+   * 
+   * @param name Output name
+   * @return Power output
+   */
+  default PowerOutput getPowerOutput(String name) {
+    return this.getPowerOutputs()
+              .stream()
+              .filter(channel -> channel.getName().equals(name))
+              .findFirst()
+              .get();
+  }
 
-	public static interface PowerOutput {
-		String getName();
+  /**
+   * PowerOutput is used to represent a hardware output capable to sourcing and
+   * optionally sinking current.
+   */
+  public static interface PowerOutput {
+    /**
+     * Returns the human readable name of the output.
+     * 
+     * @return Power output name
+     */
+    String getName();
 
-		void setEnabled(boolean enabled);
+    /**
+     * Enables or disables the power output.
+     * 
+     * @param enabled if {@code true} the output is enabled
+     */
+    void setEnabled(boolean enabled);
 
-		void setMaximumVoltage(double voltage);
+    /**
+     * Sets the maximum voltage the channel tries to output also known
+     * as 'Set voltage'.
+     * 
+     * @param voltage Set voltage
+     */
+    void setMaximumVoltage(double voltage);
 
-		double getMaximumVoltage();
+    double getMaximumVoltage();
 
-		void setMaximumCurrent(double current);
+    void setMaximumCurrent(double current);
 
-		double getMaximumCurrent();
+    double getMaximumCurrent();
 
-		double getVoltage();
+    /**
+     * Returns the voltage currently output by the power output.
+     * 
+     * @return Output voltage
+     */
+    double getVoltage();
 
-		double getCurrent();
-	}
+    /**
+     * Return the current (amperes) currently output by the power output.
+     * 
+     * @return Output amperes
+     */
+    double getCurrent();
+  }
+
 }
