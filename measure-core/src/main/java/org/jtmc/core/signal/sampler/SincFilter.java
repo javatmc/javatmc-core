@@ -1,8 +1,8 @@
 package org.jtmc.core.signal.sampler;
 
 /**
- * SincSampler
+ * SincFilter takes any numeric signal and uses Sine over X to interpolate the signal.
  */
 public class SincFilter {
-
+  //TODO: implement
 }

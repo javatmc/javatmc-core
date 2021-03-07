@@ -1,42 +1,50 @@
 package org.jtmc.core.signal.analog.sampler;
 
+import java.util.function.Function;
+import org.jtmc.core.signal.Signal;
 import org.jtmc.core.signal.analog.AnalogSampler;
 import org.jtmc.core.signal.analog.AnalogSignal;
 
-import java.util.function.Function;
-
-import org.jtmc.core.signal.Signal;
-
 /**
- * This sampler inverts any analog signal alongside the voltage axis
+ * This sampler inverts any analog signal alongside the voltage axis.
  */
 public class AnalogInverter implements AnalogSampler, Function<Float, Float> {
 
-	private final float offset;
+  private final float offset;
 
-	public AnalogInverter() {
-		this(0.0f);
-	}
+  /**
+   * Constructs an AnalogInverter with an offset of zero.
+   */
+  public AnalogInverter() {
+    this(0.0f);
+  }
 
-	public AnalogInverter(float offset) {
-		this.offset = offset;
-	}
+  /**
+   * Constructs an AnalogInverter with the given offset.
+   * 
+   * @param offset Offset
+   */
+  public AnalogInverter(float offset) {
+    this.offset = offset;
+  }
 
-	@Override
-	public Float apply(Float value) {
-		return -(value - offset);
-	}
+  @Override
+  public Float apply(Float value) {
+    return -(value - offset);
+  }
 
-	@Override
-	public AnalogSignal sample(Signal<Float> signal) {
-		return new AnalogSignal(signal, this);
-	}
+  @Override
+  public AnalogSignal sample(Signal<Float> signal) {
+    return new AnalogSignal(signal, this);
+  }
 
-	/**
-	 * @return the offset
-	 */
-	public float getOffset() {
-		return offset;
-	}
+  /**
+   * Returns the offset of the inverter.
+   * 
+   * @return Offset
+   */
+  public float getOffset() {
+    return offset;
+  }
 
 }

@@ -1,19 +1,40 @@
 package org.jtmc.core.serial;
 
-import com.fazecast.jSerialComm.SerialPort;
+import static com.fazecast.jSerialComm.SerialPort.FLOW_CONTROL_CTS_ENABLED;
+import static com.fazecast.jSerialComm.SerialPort.FLOW_CONTROL_DISABLED;
+import static com.fazecast.jSerialComm.SerialPort.FLOW_CONTROL_RTS_ENABLED;
+import static com.fazecast.jSerialComm.SerialPort.FLOW_CONTROL_XONXOFF_IN_ENABLED;
+import static com.fazecast.jSerialComm.SerialPort.FLOW_CONTROL_XONXOFF_OUT_ENABLED;
 
+/**
+ * FlowControl is used to communicate which party can transmit at the given
+ * time in a shared serial bus.
+ */
 public enum FlowControl {
-	NONE(SerialPort.FLOW_CONTROL_DISABLED),
-	RTS_CTS(SerialPort.FLOW_CONTROL_RTS_ENABLED | SerialPort.FLOW_CONTROL_CTS_ENABLED),
-	XON_XOFF(SerialPort.FLOW_CONTROL_XONXOFF_IN_ENABLED | SerialPort.FLOW_CONTROL_XONXOFF_OUT_ENABLED);
 
-	private int value;
+  /**
+   * Flow control is disabled.
+   */
+  NONE(FLOW_CONTROL_DISABLED),
 
-	private FlowControl(int value) {
-		this.value = value;
-	}
+  /**
+   * Hardware flow control is enabled.
+   */
+  RTS_CTS(FLOW_CONTROL_RTS_ENABLED | FLOW_CONTROL_CTS_ENABLED),
 
-	public int getValue() {
-		return value;
-	}
+  /**
+   * Software flow control is enabled.
+   */
+  XON_XOFF(FLOW_CONTROL_XONXOFF_IN_ENABLED | FLOW_CONTROL_XONXOFF_OUT_ENABLED);
+
+  private int value;
+
+  private FlowControl(int value) {
+    this.value = value;
+  }
+
+  public int getValue() {
+    return value;
+  }
+
 }

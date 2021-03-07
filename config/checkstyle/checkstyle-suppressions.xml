@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suppressions PUBLIC
+     "-//Checkstyle//DTD SuppressionFilter Configuration 1.0//EN"
+     "https://checkstyle.org/dtds/suppressions_1_0.dtd">
+<suppressions>
+  <!-- Disabled due to lots of standards using full capital names and abbreviations -->
+  <suppress files="." checks="AbbreviationAsWordInNameCheck"/>
+
+  <!-- Disabled because of styling choice -->
+  <suppress files="." checks="RequireEmptyLineBeforeBlockTagGroup" />
+
+  <!-- Generated RPC of the VXI11 module -->
+  <suppress checks="." files="org[\\/]jtmc[\\/]core[\\/]lxi[\\/]vxi11[\\/]rpc[\\/]"/>
+  <suppress checks="." files="org[\\/]jtmc[\\/]core[\\/]lxi[\\/]vxi11[\\/]portmap[\\/]"/>
+</suppressions>

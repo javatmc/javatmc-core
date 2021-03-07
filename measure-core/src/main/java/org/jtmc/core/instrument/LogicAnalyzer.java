@@ -4,35 +4,48 @@ import java.util.Collection;
 
 /**
  * A logic analyzer is a device capable of making binary signal measurements
- * over time
+ * over time.
  * 
  * @author Balazs Eszes
  */
 public interface LogicAnalyzer extends TimeDomainAnalyzer {
 
-	public final static double TTL = 1.5f;
+  public static final double TTL = 1.5f;
 
-	public final static double CMOS = 1.65f;
+  public static final double CMOS = 1.65f;
 
-	public final static double LVCMOS3V3 = 1.65f;
+  public static final double LVCMOS3V3 = 1.65f;
 
-	public final static double LVCMOS2V5 = 1.25f;
+  public static final double LVCMOS2V5 = 1.25f;
 
-	Collection<DigitalInput> getDigitalInputs();
+  Collection<DigitalInput> getDigitalInputs();
 
-	default DigitalInput getDigitalInput(int index) {
-		return this.getDigitalInputs().stream().skip(index).findFirst().get();
-	}
+  default DigitalInput getDigitalInput(int index) {
+    return this.getDigitalInputs().stream().skip(index).findFirst().get();
+  }
 
-	default DigitalInput getDigitalInput(String name) {
-		return this.getDigitalInputs().stream().filter(channel -> channel.getName().equals(name)).findFirst().get();
-	}
+  /**
+   * Returns the digital input with the matching name.
+   * @param name Input name
+   * @return Digital Input
+   */
+  default DigitalInput getDigitalInput(String name) {
+    return this.getDigitalInputs()
+               .stream()
+               .filter(channel -> channel.getName()
+               .equals(name))
+               .findFirst()
+               .get();
+  }
 
-	public static interface DigitalInput {
-		String getName();
+  /**
+   * DigitalInput represents a physical input recording logical values.
+   */
+  public static interface DigitalInput {
+    String getName();
 
-		void setEnabled(boolean enabled);
+    void setEnabled(boolean enabled);
 
-		void setThreshold(double threshold);
-	}
+    void setThreshold(double threshold);
+  }
 }

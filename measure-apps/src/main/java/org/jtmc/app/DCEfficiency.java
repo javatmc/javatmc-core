@@ -1,16 +1,17 @@
 package org.jtmc.app;
 
 /**
- * DCEfficiency
+ * DCEfficiency is an application to measure the efficiency of a DC Power supply
+ * over the given current range at the set voltage.
  */
 public class DCEfficiency {
 
-	double voltage;
+  double voltage;
 
-	double startCurrent;
+  double startCurrent;
 
-	double stopCurrent;
+  double stopCurrent;
 
-	int points;
-	
+  int points;
+
 }

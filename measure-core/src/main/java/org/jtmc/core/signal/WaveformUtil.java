@@ -1,9 +1,8 @@
 package org.jtmc.core.signal;
 
 /**
- * WaveformUtil
+ * WaveformUtil provides methods for creating waveforms.
  */
 public class WaveformUtil {
 
-    
 }
